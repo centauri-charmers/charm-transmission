@@ -1,0 +1,10 @@
+charm_name: bionic
+dev_bundles:
+  - bionic
+gate_bundles:
+  - bionic
+smoke_bundles:
+  - bionic
+target_deploy_status: {}
+tests: []
+configure: []

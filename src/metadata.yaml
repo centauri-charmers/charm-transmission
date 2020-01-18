@@ -1,0 +1,13 @@
+name: transmission
+summary: Transmission is a light-weight BitTorrent client
+maintainer: Centauri Charmers <charms@chris.centauri.solutions>
+description: |
+  Transmission is a light-weight BitTorrent client
+tags:
+  - misc
+series:
+  - bionic
+subordinate: false
+provides:
+  torrent-client:
+    interface: torrent-client

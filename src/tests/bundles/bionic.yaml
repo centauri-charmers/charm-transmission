@@ -1,0 +1,3 @@
+transmission:
+  charm: transmission
+  series: bionic
