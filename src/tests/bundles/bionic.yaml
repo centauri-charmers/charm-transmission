@@ -1,3 +1,4 @@
-transmission:
-  charm: transmission
-  series: bionic
+applications:
+  transmission:
+    charm: transmission
+    series: bionic
