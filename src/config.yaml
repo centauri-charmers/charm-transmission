@@ -1,4 +1,8 @@
 options:
+  port:
+    default: 51413
+    type: int
+    description: Port that Transmission listens on
   debug:
     default: False
     type: boolean

@@ -2,3 +2,4 @@ applications:
   transmission:
     charm: transmission
     series: bionic
+    num_units: 1

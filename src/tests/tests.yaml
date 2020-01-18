@@ -1,4 +1,4 @@
-charm_name: bionic
+charm_name: transmission
 dev_bundles:
   - bionic
 gate_bundles:

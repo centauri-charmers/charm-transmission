@@ -21,6 +21,8 @@ import charms.reactive as reactive
 import charmhelpers.core as ch_core
 import charmhelpers.core.hookenv as hookenv
 
+import charm.transmission as transmission
+
 
 hooks = hookenv.Hooks()
 
@@ -32,9 +34,8 @@ def install():
 
 @reactive.when_not('user.transmission.created')
 def create_user():
-    ch_core.host.add_user(
+    ch_core.host.adduser(
         username='transmission',
-        system_user=True,
         uid=1001
     )
     reactive.set_state('user.transmission.created')
@@ -46,4 +47,9 @@ def create_user():
 )
 @reactive.when_not('transmission.configured')
 def configure_transmission():
+    config = transmission.load_config('transmission')
+    port = hookenv.config('port')
+    config['peer-port'] = port
+    hookenv.open_port(port)
+    transmission.save_config(config)
     reactive.set_state('transmission.configured')

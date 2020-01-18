@@ -25,3 +25,10 @@ def load_config(user='transmission'):
             'r') as myfile:
         data = myfile.read()
     return json.loads(data)
+
+
+def save_config(config, user='transmission'):
+    with open(
+            "/home/{}/.config/transmission/settings.json".format(user),
+            'w') as myfile:
+        myfile.write(json.dumps(config))
