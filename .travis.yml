@@ -7,7 +7,7 @@ env:
  - IMAGE="ubuntu:bionic"
 script:
  - if [ ! -z ${LIGHT} ]; then
-      tox
+      tox;
    fi
 # setup dependencies here to save time on simpler test environments
 # wait for lxd socket to be ready after snap installation
@@ -19,11 +19,11 @@ script:
       sudo lxd waitready;
       sudo lxd init --auto;
       sudo usermod -a -G lxd travis;
-      tox -e build
+      tox -e build;
    fi
  - if [ -z ${LIGHT} ]; then
-      juju bootstrap lxd lxd
-      cd build/builds/transmission
-      tox -e pep8
-      tox -e func
+      juju bootstrap lxd lxd;
+      cd build/builds/transmission;
+      tox -e pep8;
+      tox -e func;
    fi
