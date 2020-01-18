@@ -18,7 +18,7 @@ script:
 # sudo back to ourself to activate lxd group membership
  - if [ -z ${LIGHT} ]; then
       sudo apt remove -y --purge lxd lxd-client;
-      sudo snap install lxd;
+      sudo snap install lxd; sudo snap install --classic juju;
       sudo sh -c 'echo PATH=/snap/bin:$PATH >> /etc/environment';
       sudo lxd waitready;
       sudo lxd init --auto;
