@@ -3,8 +3,12 @@ sudo: required
 dist: bionic
 language: python
 env:
- - LIGHT=1
- - IMAGE="ubuntu:bionic"
+  - LIGHT=1
+  - IMAGE="ubuntu:bionic"
+addons:
+   apt:
+     packages:
+       - tox
 script:
  - if [ ! -z ${LIGHT} ]; then
       tox;
