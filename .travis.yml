@@ -1,0 +1,29 @@
+---
+sudo: required
+dist: bionic
+language: python
+env:
+ - LIGHT=1
+ - IMAGE="ubuntu:bionic"
+script:
+ - if [ ! -z ${LIGHT} ]; then
+      tox
+   fi
+# setup dependencies here to save time on simpler test environments
+# wait for lxd socket to be ready after snap installation
+# sudo back to ourself to activate lxd group membership
+ - if [ -z ${LIGHT} ]; then
+      sudo apt remove -y --purge lxd lxd-client;
+      sudo snap install lxd;
+      sudo sh -c 'echo PATH=/snap/bin:$PATH >> /etc/environment';
+      sudo lxd waitready;
+      sudo lxd init --auto;
+      sudo usermod -a -G lxd travis;
+      tox -e build
+   fi
+ - if [ -z ${LIGHT} ]; then
+      juju bootstrap lxd lxd
+      cd build/builds/transmission
+      tox -e pep8
+      tox -e func
+   fi
